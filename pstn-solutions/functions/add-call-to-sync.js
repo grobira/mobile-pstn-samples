@@ -1,3 +1,5 @@
+const { SYNC_SERVICE, SYNC_MAP } = process.env;
+
 exports.handler = async function (context, event, callback) {
 
     const { salesRepNumber, customerNumber } = event;
@@ -13,8 +15,8 @@ exports.handler = async function (context, event, callback) {
     const client = context.getTwilioClient();
 
     const mapCalls = await client.sync
-        .services('IS87b3ed140b2a81999b3b8033487881f9')
-        .syncMaps('MP1611f592d0bf4e6ab5050b4da14df05a')
+        .services(SYNC_SERVICE)
+        .syncMaps(SYNC_MAP)
         .syncMapItems
         .create({
             key: salesRepNumber,
